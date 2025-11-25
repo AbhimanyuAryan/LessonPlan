@@ -23,8 +23,22 @@ class StreamState(BaseModel, typing.Generic[StreamStateValueT]):
     value: StreamStateValueT
     state: typing_extensions.Literal["Pending", "Incomplete", "Complete"]
 # #########################################################################
-# Generated classes (1)
+# Generated classes (3)
 # #########################################################################
+
+class LessonPlan(BaseModel):
+    topic: typing.Optional[str] = None
+    learningObjectives: typing.List[str]
+    activities: typing.List[str]
+    materials: typing.List[str]
+    timeAllocation: typing.Optional[int] = None
+    assessmentMethod: typing.Optional[str] = None
+    differentiationStrategies: typing.List[str]
+
+class LessonPlanEvaluation(BaseModel):
+    pacing: typing.Optional[typing.Union[str, str, str]] = None
+    biases: typing.List[str]
+    estimatedCosts: typing.Optional[int] = None
 
 class Resume(BaseModel):
     name: typing.Optional[str] = None

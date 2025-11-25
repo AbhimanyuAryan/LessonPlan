@@ -16,6 +16,12 @@ from . import stream_types
 
 type_map = {
 
+    "types.LessonPlan": types.LessonPlan,
+    "stream_types.LessonPlan": stream_types.LessonPlan,
+
+    "types.LessonPlanEvaluation": types.LessonPlanEvaluation,
+    "stream_types.LessonPlanEvaluation": stream_types.LessonPlanEvaluation,
+
     "types.Resume": types.Resume,
     "stream_types.Resume": stream_types.Resume,
 

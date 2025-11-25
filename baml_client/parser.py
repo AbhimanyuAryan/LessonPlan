@@ -24,6 +24,18 @@ class LlmResponseParser:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
+    def CreateLessonPlan(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> types.LessonPlan:
+        result = self.__options.merge_options(baml_options).parse_response(function_name="CreateLessonPlan", llm_response=llm_response, mode="request")
+        return typing.cast(types.LessonPlan, result)
+
+    def EvaluateLessonPlan(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> types.LessonPlanEvaluation:
+        result = self.__options.merge_options(baml_options).parse_response(function_name="EvaluateLessonPlan", llm_response=llm_response, mode="request")
+        return typing.cast(types.LessonPlanEvaluation, result)
+
     def ExtractResume(
         self, llm_response: str, baml_options: BamlCallOptions = {},
     ) -> types.Resume:
@@ -37,6 +49,18 @@ class LlmStreamParser:
 
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
+
+    def CreateLessonPlan(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> stream_types.LessonPlan:
+        result = self.__options.merge_options(baml_options).parse_response(function_name="CreateLessonPlan", llm_response=llm_response, mode="stream")
+        return typing.cast(stream_types.LessonPlan, result)
+
+    def EvaluateLessonPlan(
+        self, llm_response: str, baml_options: BamlCallOptions = {},
+    ) -> stream_types.LessonPlanEvaluation:
+        result = self.__options.merge_options(baml_options).parse_response(function_name="EvaluateLessonPlan", llm_response=llm_response, mode="stream")
+        return typing.cast(stream_types.LessonPlanEvaluation, result)
 
     def ExtractResume(
         self, llm_response: str, baml_options: BamlCallOptions = {},

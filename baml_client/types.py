@@ -41,8 +41,22 @@ def all_succeeded(checks: typing.Dict[CheckName, Check]) -> bool:
 # #########################################################################
 
 # #########################################################################
-# Generated classes (1)
+# Generated classes (3)
 # #########################################################################
+
+class LessonPlan(BaseModel):
+    topic: str
+    learningObjectives: typing.List[str]
+    activities: typing.List[str]
+    materials: typing.List[str]
+    timeAllocation: int
+    assessmentMethod: str
+    differentiationStrategies: typing.List[str]
+
+class LessonPlanEvaluation(BaseModel):
+    pacing: typing.Union[typing_extensions.Literal['slow'], typing_extensions.Literal['medium'], typing_extensions.Literal['fast']]
+    biases: typing.List[str]
+    estimatedCosts: int
 
 class Resume(BaseModel):
     name: str

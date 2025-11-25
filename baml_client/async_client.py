@@ -79,6 +79,36 @@ class BamlAsyncClient:
     def parse_stream(self):
       return self.__llm_stream_parser
     
+    async def CreateLessonPlan(self, topic: str,
+        baml_options: BamlCallOptions = {},
+    ) -> types.LessonPlan:
+        # Check if on_tick is provided
+        if 'on_tick' in baml_options:
+            # Use streaming internally when on_tick is provided
+            stream = self.stream.CreateLessonPlan(topic=topic,
+                baml_options=baml_options)
+            return await stream.get_final_response()
+        else:
+            # Original non-streaming code
+            result = await self.__options.merge_options(baml_options).call_function_async(function_name="CreateLessonPlan", args={
+                "topic": topic,
+            })
+            return typing.cast(types.LessonPlan, result.cast_to(types, types, stream_types, False, __runtime__))
+    async def EvaluateLessonPlan(self, topic: str,lessonPlan: types.LessonPlan,
+        baml_options: BamlCallOptions = {},
+    ) -> types.LessonPlanEvaluation:
+        # Check if on_tick is provided
+        if 'on_tick' in baml_options:
+            # Use streaming internally when on_tick is provided
+            stream = self.stream.EvaluateLessonPlan(topic=topic,lessonPlan=lessonPlan,
+                baml_options=baml_options)
+            return await stream.get_final_response()
+        else:
+            # Original non-streaming code
+            result = await self.__options.merge_options(baml_options).call_function_async(function_name="EvaluateLessonPlan", args={
+                "topic": topic,"lessonPlan": lessonPlan,
+            })
+            return typing.cast(types.LessonPlanEvaluation, result.cast_to(types, types, stream_types, False, __runtime__))
     async def ExtractResume(self, resume: str,
         baml_options: BamlCallOptions = {},
     ) -> types.Resume:
@@ -103,6 +133,30 @@ class BamlStreamClient:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
+    def CreateLessonPlan(self, topic: str,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlStream[stream_types.LessonPlan, types.LessonPlan]:
+        ctx, result = self.__options.merge_options(baml_options).create_async_stream(function_name="CreateLessonPlan", args={
+            "topic": topic,
+        })
+        return baml_py.BamlStream[stream_types.LessonPlan, types.LessonPlan](
+          result,
+          lambda x: typing.cast(stream_types.LessonPlan, x.cast_to(types, types, stream_types, True, __runtime__)),
+          lambda x: typing.cast(types.LessonPlan, x.cast_to(types, types, stream_types, False, __runtime__)),
+          ctx,
+        )
+    def EvaluateLessonPlan(self, topic: str,lessonPlan: types.LessonPlan,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlStream[stream_types.LessonPlanEvaluation, types.LessonPlanEvaluation]:
+        ctx, result = self.__options.merge_options(baml_options).create_async_stream(function_name="EvaluateLessonPlan", args={
+            "topic": topic,"lessonPlan": lessonPlan,
+        })
+        return baml_py.BamlStream[stream_types.LessonPlanEvaluation, types.LessonPlanEvaluation](
+          result,
+          lambda x: typing.cast(stream_types.LessonPlanEvaluation, x.cast_to(types, types, stream_types, True, __runtime__)),
+          lambda x: typing.cast(types.LessonPlanEvaluation, x.cast_to(types, types, stream_types, False, __runtime__)),
+          ctx,
+        )
     def ExtractResume(self, resume: str,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.BamlStream[stream_types.Resume, types.Resume]:
@@ -123,6 +177,20 @@ class BamlHttpRequestClient:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
+    async def CreateLessonPlan(self, topic: str,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        result = await self.__options.merge_options(baml_options).create_http_request_async(function_name="CreateLessonPlan", args={
+            "topic": topic,
+        }, mode="request")
+        return result
+    async def EvaluateLessonPlan(self, topic: str,lessonPlan: types.LessonPlan,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        result = await self.__options.merge_options(baml_options).create_http_request_async(function_name="EvaluateLessonPlan", args={
+            "topic": topic,"lessonPlan": lessonPlan,
+        }, mode="request")
+        return result
     async def ExtractResume(self, resume: str,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.baml_py.HTTPRequest:
@@ -138,6 +206,20 @@ class BamlHttpStreamRequestClient:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
+    async def CreateLessonPlan(self, topic: str,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        result = await self.__options.merge_options(baml_options).create_http_request_async(function_name="CreateLessonPlan", args={
+            "topic": topic,
+        }, mode="stream")
+        return result
+    async def EvaluateLessonPlan(self, topic: str,lessonPlan: types.LessonPlan,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.baml_py.HTTPRequest:
+        result = await self.__options.merge_options(baml_options).create_http_request_async(function_name="EvaluateLessonPlan", args={
+            "topic": topic,"lessonPlan": lessonPlan,
+        }, mode="stream")
+        return result
     async def ExtractResume(self, resume: str,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.baml_py.HTTPRequest:
