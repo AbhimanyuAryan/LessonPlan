@@ -1,19 +1,20 @@
 class LessonPlan {
-  topic string @description("The main math topic for the lesson")
+  topic string @description("The main data structures topic for the lesson")
   learningObjectives string[] @description("Key concepts students should learn")
   activities string[] @description("Engaging activities to teach the concept")
   materials string[] @description("Required materials for the lesson")
   timeAllocation int @alias("time_allocation_mins")
   assessmentMethod string @description("How to check student understanding")
   differentiationStrategies string[] @description("Ways to adjust for different learning levels")
+  codeExamples string[] @description("Code examples demonstrating the data structure")
 }
 
 function CreateLessonPlan(topic: string) -> LessonPlan {
   client "AzureOpenAPIClient"
   prompt #"
-    Create a detailed, age-appropriate math lesson plan for 3rd grade students.
-    The lesson should be engaging, include hands-on activities, and accommodate different learning styles.
-    Make sure the activities are fun and interactive for 8-9 year old students.
+    Create a detailed lesson plan for teaching data structures to computer science students.
+    The lesson should include clear explanations, practical examples, coding exercises, and real-world applications.
+    Include visualizations and hands-on coding activities where appropriate.
 
     {{ ctx.output_format }}
 
@@ -21,34 +22,33 @@ function CreateLessonPlan(topic: string) -> LessonPlan {
   "#
 }
 
-test MultiplicationLessonTest {
+test LinkedListLessonTest {
   functions [CreateLessonPlan]
   args {
-    topic "multiplication tables up to 5"
+    topic "introduction to linked lists"
   }
 }
 
-test FractionsLessonTest {
+test BinaryTreeLessonTest {
   functions [CreateLessonPlan]
   args {
-    topic "introduction to basic fractions"
+    topic "binary trees and tree traversal"
   }
 }
 
 class LessonPlanEvaluation {
   pacing "slow" | "medium" | "fast" @description("How fast the lesson is paced")
-  biases string[] @description(#"
-    Any biases in the lesson plan that could make a student feel uncomfortable.
-  "#)
-  estimatedCosts int @description("Estimated cost of materials for the lesson")
+  complexity "beginner" | "intermediate" | "advanced" @description("Difficulty level of the content")
+  practicalRelevance int @description("Rating of real-world applicability (1-10)")
+  suggestedImprovements string[] @description("Ways to enhance the lesson plan")
 }
 
 function EvaluateLessonPlan(topic: string, lessonPlan: LessonPlan) -> LessonPlanEvaluation {
-  client "anthropic/claude-3-5-sonnet-latest"
+  client "AzureOpenAPIClient"
   prompt #"
-    Evaluate the lesson plan for 3rd grade students.
-    The lesson should be engaging, include hands-on activities, and accommodate different learning styles.
-    Make sure the activities are fun and interactive for 8-9 year old students.
+    Evaluate the data structures lesson plan for computer science students.
+    Consider the clarity of explanations, quality of code examples, practical applicability,
+    and whether the pacing is appropriate for the complexity of the topic.
 
     {{ ctx.output_format }}
 

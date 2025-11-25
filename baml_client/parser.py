@@ -36,12 +36,6 @@ class LlmResponseParser:
         result = self.__options.merge_options(baml_options).parse_response(function_name="EvaluateLessonPlan", llm_response=llm_response, mode="request")
         return typing.cast(types.LessonPlanEvaluation, result)
 
-    def ExtractResume(
-        self, llm_response: str, baml_options: BamlCallOptions = {},
-    ) -> types.Resume:
-        result = self.__options.merge_options(baml_options).parse_response(function_name="ExtractResume", llm_response=llm_response, mode="request")
-        return typing.cast(types.Resume, result)
-
     
 
 class LlmStreamParser:
@@ -61,11 +55,5 @@ class LlmStreamParser:
     ) -> stream_types.LessonPlanEvaluation:
         result = self.__options.merge_options(baml_options).parse_response(function_name="EvaluateLessonPlan", llm_response=llm_response, mode="stream")
         return typing.cast(stream_types.LessonPlanEvaluation, result)
-
-    def ExtractResume(
-        self, llm_response: str, baml_options: BamlCallOptions = {},
-    ) -> stream_types.Resume:
-        result = self.__options.merge_options(baml_options).parse_response(function_name="ExtractResume", llm_response=llm_response, mode="stream")
-        return typing.cast(stream_types.Resume, result)
 
     

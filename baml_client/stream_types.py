@@ -23,7 +23,7 @@ class StreamState(BaseModel, typing.Generic[StreamStateValueT]):
     value: StreamStateValueT
     state: typing_extensions.Literal["Pending", "Incomplete", "Complete"]
 # #########################################################################
-# Generated classes (3)
+# Generated classes (2)
 # #########################################################################
 
 class LessonPlan(BaseModel):
@@ -34,17 +34,13 @@ class LessonPlan(BaseModel):
     timeAllocation: typing.Optional[int] = None
     assessmentMethod: typing.Optional[str] = None
     differentiationStrategies: typing.List[str]
+    codeExamples: typing.List[str]
 
 class LessonPlanEvaluation(BaseModel):
     pacing: typing.Optional[typing.Union[str, str, str]] = None
-    biases: typing.List[str]
-    estimatedCosts: typing.Optional[int] = None
-
-class Resume(BaseModel):
-    name: typing.Optional[str] = None
-    email: typing.Optional[str] = None
-    experience: typing.List[str]
-    skills: typing.List[str]
+    complexity: typing.Optional[typing.Union[str, str, str]] = None
+    practicalRelevance: typing.Optional[int] = None
+    suggestedImprovements: typing.List[str]
 
 # #########################################################################
 # Generated type aliases (0)

@@ -22,8 +22,5 @@ type_map = {
     "types.LessonPlanEvaluation": types.LessonPlanEvaluation,
     "stream_types.LessonPlanEvaluation": stream_types.LessonPlanEvaluation,
 
-    "types.Resume": types.Resume,
-    "stream_types.Resume": stream_types.Resume,
-
 
 }

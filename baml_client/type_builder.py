@@ -20,7 +20,7 @@ from .globals import DO_NOT_USE_DIRECTLY_UNLESS_YOU_KNOW_WHAT_YOURE_DOING_RUNTIM
 class TypeBuilder(type_builder.TypeBuilder):
     def __init__(self):
         super().__init__(classes=set(
-          ["LessonPlan","LessonPlanEvaluation","Resume",]
+          ["LessonPlan","LessonPlanEvaluation",]
         ), enums=set(
           []
         ), runtime=DO_NOT_USE_DIRECTLY_UNLESS_YOU_KNOW_WHAT_YOURE_DOING_RUNTIME)
@@ -31,7 +31,7 @@ class TypeBuilder(type_builder.TypeBuilder):
 
 
     # #########################################################################
-    # Generated classes 3
+    # Generated classes 2
     # #########################################################################
 
     @property
@@ -42,10 +42,6 @@ class TypeBuilder(type_builder.TypeBuilder):
     def LessonPlanEvaluation(self) -> "LessonPlanEvaluationViewer":
         return LessonPlanEvaluationViewer(self)
 
-    @property
-    def Resume(self) -> "ResumeViewer":
-        return ResumeViewer(self)
-
 
 
 # #########################################################################
@@ -54,14 +50,14 @@ class TypeBuilder(type_builder.TypeBuilder):
 
 
 # #########################################################################
-# Generated classes 3
+# Generated classes 2
 # #########################################################################
 
 class LessonPlanAst:
     def __init__(self, tb: type_builder.TypeBuilder):
         _tb = tb._tb # type: ignore (we know how to use this private attribute)
         self._bldr = _tb.class_("LessonPlan")
-        self._properties: typing.Set[str] = set([  "topic",  "learningObjectives",  "activities",  "materials",  "timeAllocation",  "assessmentMethod",  "differentiationStrategies",  ])
+        self._properties: typing.Set[str] = set([  "topic",  "learningObjectives",  "activities",  "materials",  "timeAllocation",  "assessmentMethod",  "differentiationStrategies",  "codeExamples",  ])
         self._props = LessonPlanProperties(self._bldr, self._properties)
 
     def type(self) -> baml_py.FieldType:
@@ -117,6 +113,10 @@ class LessonPlanProperties:
     def differentiationStrategies(self) -> type_builder.ClassPropertyViewer:
         return type_builder.ClassPropertyViewer(self.__bldr.property("differentiationStrategies"))
     
+    @property
+    def codeExamples(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("codeExamples"))
+    
     
 
 
@@ -124,7 +124,7 @@ class LessonPlanEvaluationAst:
     def __init__(self, tb: type_builder.TypeBuilder):
         _tb = tb._tb # type: ignore (we know how to use this private attribute)
         self._bldr = _tb.class_("LessonPlanEvaluation")
-        self._properties: typing.Set[str] = set([  "pacing",  "biases",  "estimatedCosts",  ])
+        self._properties: typing.Set[str] = set([  "pacing",  "complexity",  "practicalRelevance",  "suggestedImprovements",  ])
         self._props = LessonPlanEvaluationProperties(self._bldr, self._properties)
 
     def type(self) -> baml_py.FieldType:
@@ -157,63 +157,16 @@ class LessonPlanEvaluationProperties:
         return type_builder.ClassPropertyViewer(self.__bldr.property("pacing"))
     
     @property
-    def biases(self) -> type_builder.ClassPropertyViewer:
-        return type_builder.ClassPropertyViewer(self.__bldr.property("biases"))
+    def complexity(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("complexity"))
     
     @property
-    def estimatedCosts(self) -> type_builder.ClassPropertyViewer:
-        return type_builder.ClassPropertyViewer(self.__bldr.property("estimatedCosts"))
-    
-    
-
-
-class ResumeAst:
-    def __init__(self, tb: type_builder.TypeBuilder):
-        _tb = tb._tb # type: ignore (we know how to use this private attribute)
-        self._bldr = _tb.class_("Resume")
-        self._properties: typing.Set[str] = set([  "name",  "email",  "experience",  "skills",  ])
-        self._props = ResumeProperties(self._bldr, self._properties)
-
-    def type(self) -> baml_py.FieldType:
-        return self._bldr.field()
-
-    @property
-    def props(self) -> "ResumeProperties":
-        return self._props
-
-
-class ResumeViewer(ResumeAst):
-    def __init__(self, tb: type_builder.TypeBuilder):
-        super().__init__(tb)
-
-    
-    def list_properties(self) -> typing.List[typing.Tuple[str, type_builder.ClassPropertyViewer]]:
-        return [(name, type_builder.ClassPropertyViewer(self._bldr.property(name))) for name in self._properties]
-    
-
-
-class ResumeProperties:
-    def __init__(self, bldr: baml_py.ClassBuilder, properties: typing.Set[str]):
-        self.__bldr = bldr
-        self.__properties = properties # type: ignore (we know how to use this private attribute) # noqa: F821
-
-    
+    def practicalRelevance(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("practicalRelevance"))
     
     @property
-    def name(self) -> type_builder.ClassPropertyViewer:
-        return type_builder.ClassPropertyViewer(self.__bldr.property("name"))
-    
-    @property
-    def email(self) -> type_builder.ClassPropertyViewer:
-        return type_builder.ClassPropertyViewer(self.__bldr.property("email"))
-    
-    @property
-    def experience(self) -> type_builder.ClassPropertyViewer:
-        return type_builder.ClassPropertyViewer(self.__bldr.property("experience"))
-    
-    @property
-    def skills(self) -> type_builder.ClassPropertyViewer:
-        return type_builder.ClassPropertyViewer(self.__bldr.property("skills"))
+    def suggestedImprovements(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("suggestedImprovements"))
     
     
 
