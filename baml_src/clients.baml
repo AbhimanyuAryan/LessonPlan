@@ -2,11 +2,11 @@
 
 // Using the new OpenAI Responses API for enhanced formatting
 
-client<llm> MyClient {
+client<llm> AzureOpenAPIClient {
   provider "openai-generic"
   options {
     // use the API key it indicates in the 'models' sidebar navigation menu, and clicking on the model you want to use
-    base_url env.AZURE_AI_FOUNDRY_ENDPOINT
+    base_url env.AZURE_AI_FOUNDRY_BASE_URL
     api_key env.AZURE_AI_FOUNDRY_API_KEY
     model "gpt-4o-mini" // use the model you actually deployed
   }
