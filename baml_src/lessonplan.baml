@@ -38,13 +38,14 @@ test BinaryTreeLessonTest {
 
 class LessonPlanEvaluation {
   pacing "slow" | "medium" | "fast" @description("How fast the lesson is paced")
-  complexity "beginner" | "intermediate" | "advanced" @description("Difficulty level of the content")
-  practicalRelevance int @description("Rating of real-world applicability (1-10)")
-  suggestedImprovements string[] @description("Ways to enhance the lesson plan")
+  biases string[] @description(#"
+    Any biases present in the lesson plan that could make student feel uncomfortable
+  "#)
+  estimatedCosts int @description("Estimated cost of materials for the lesson")
 }
 
 function EvaluateLessonPlan(topic: string, lessonPlan: LessonPlan) -> LessonPlanEvaluation {
-  client "AzureOpenAPIClient"
+  client "MistralOpenAPIClient"
   prompt #"
     Evaluate the data structures lesson plan for computer science students.
     Consider the clarity of explanations, quality of code examples, practical applicability,

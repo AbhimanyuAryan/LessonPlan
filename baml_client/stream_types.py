@@ -38,9 +38,8 @@ class LessonPlan(BaseModel):
 
 class LessonPlanEvaluation(BaseModel):
     pacing: typing.Optional[typing.Union[str, str, str]] = None
-    complexity: typing.Optional[typing.Union[str, str, str]] = None
-    practicalRelevance: typing.Optional[int] = None
-    suggestedImprovements: typing.List[str]
+    biases: typing.List[str]
+    estimatedCosts: typing.Optional[int] = None
 
 # #########################################################################
 # Generated type aliases (0)

@@ -124,7 +124,7 @@ class LessonPlanEvaluationAst:
     def __init__(self, tb: type_builder.TypeBuilder):
         _tb = tb._tb # type: ignore (we know how to use this private attribute)
         self._bldr = _tb.class_("LessonPlanEvaluation")
-        self._properties: typing.Set[str] = set([  "pacing",  "complexity",  "practicalRelevance",  "suggestedImprovements",  ])
+        self._properties: typing.Set[str] = set([  "pacing",  "biases",  "estimatedCosts",  ])
         self._props = LessonPlanEvaluationProperties(self._bldr, self._properties)
 
     def type(self) -> baml_py.FieldType:
@@ -157,16 +157,12 @@ class LessonPlanEvaluationProperties:
         return type_builder.ClassPropertyViewer(self.__bldr.property("pacing"))
     
     @property
-    def complexity(self) -> type_builder.ClassPropertyViewer:
-        return type_builder.ClassPropertyViewer(self.__bldr.property("complexity"))
+    def biases(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("biases"))
     
     @property
-    def practicalRelevance(self) -> type_builder.ClassPropertyViewer:
-        return type_builder.ClassPropertyViewer(self.__bldr.property("practicalRelevance"))
-    
-    @property
-    def suggestedImprovements(self) -> type_builder.ClassPropertyViewer:
-        return type_builder.ClassPropertyViewer(self.__bldr.property("suggestedImprovements"))
+    def estimatedCosts(self) -> type_builder.ClassPropertyViewer:
+        return type_builder.ClassPropertyViewer(self.__bldr.property("estimatedCosts"))
     
     
 

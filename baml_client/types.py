@@ -56,9 +56,8 @@ class LessonPlan(BaseModel):
 
 class LessonPlanEvaluation(BaseModel):
     pacing: typing.Union[typing_extensions.Literal['slow'], typing_extensions.Literal['medium'], typing_extensions.Literal['fast']]
-    complexity: typing.Union[typing_extensions.Literal['beginner'], typing_extensions.Literal['intermediate'], typing_extensions.Literal['advanced']]
-    practicalRelevance: int
-    suggestedImprovements: typing.List[str]
+    biases: typing.List[str]
+    estimatedCosts: int
 
 # #########################################################################
 # Generated type aliases (0)

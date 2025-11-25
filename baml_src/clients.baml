@@ -13,6 +13,16 @@ client<llm> AzureOpenAPIClient {
 }
 
 
+client<llm> MistralOpenAPIClient {
+  provider "openai-generic"
+  options {
+    // use the API key it indicates in the 'models' sidebar navigation menu, and clicking on the model you want to use
+    base_url env.MINISTRAL_AI_FOUNDRY_BASE_URL
+    api_key env.MINISTRAL_AI_FOUNDRY_API_KEY
+    model "Ministral-3B" // use the model you actually deployed
+  }
+}
+
 // https://docs.boundaryml.com/docs/snippets/clients/retry
 retry_policy Constant {
   max_retries 3
